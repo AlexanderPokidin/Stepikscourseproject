@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public static String MESSAGE_KEY = "MESSAGE_KEY";
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent toSecondActivityIntent = new Intent(MainActivity.this, SecondActivity.class);
                 toSecondActivityIntent.putExtra(MESSAGE_KEY, mMessage.getText().toString());
                 startActivity(toSecondActivityIntent);
+
+                showToast(mMessage.getText().toString());
             }
         }
     };
@@ -38,5 +41,9 @@ public class MainActivity extends AppCompatActivity {
 
     private boolean isMessageValid() {
         return !TextUtils.isEmpty(mMessage.getText());
+    }
+
+    private void showToast(String string) {
+        Toast.makeText(this, string, Toast.LENGTH_SHORT).show();
     }
 }
